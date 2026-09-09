@@ -33,7 +33,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p site
-          cp index.html sum.js site/
+          cp index.html sum.js subtract.js multiply.js divide.js site/
 
       - name: Upload site artifact
         uses: actions/upload-artifact@v4

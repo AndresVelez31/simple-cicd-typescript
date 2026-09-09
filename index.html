@@ -26,12 +26,21 @@
   <script src="divide.js"></script>
   <script>
     document.getElementById('btnCalc').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
-      var op = document.getElementById('operation').value;
-      var operations = { sum: sum, subtract: subtract, multiply: multiply, divide: divide };
       try {
-        document.getElementById('result').textContent = operations[op](a, b);
+        var a = Number(document.getElementById('num1').value) || 0;
+        var b = Number(document.getElementById('num2').value) || 0;
+        var op = document.getElementById('operation').value;
+        var operations = {
+          sum: typeof sum === 'function' ? sum : null,
+          subtract: typeof subtract === 'function' ? subtract : null,
+          multiply: typeof multiply === 'function' ? multiply : null,
+          divide: typeof divide === 'function' ? divide : null,
+        };
+        var fn = operations[op];
+        if (!fn) {
+          throw new Error('Operation "' + op + '" is not available (script failed to load)');
+        }
+        document.getElementById('result').textContent = fn(a, b);
       } catch (err) {
         document.getElementById('result').textContent = 'Error: ' + err.message;
       }
