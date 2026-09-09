@@ -3,23 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sum Two Numbers :) </title>
+  <title>Calculator :) </title>
 </head>
 <body>
-  <h1>Sum Two Int Numbers =) </h1>
+  <h1>Simple Calculator =) </h1>
   <input type="number" id="num1" placeholder="First number" />
-  <span> + </span>
+  <label for="operation">Operation</label>
+  <select id="operation" title="Operation">
+    <option value="sum">+</option>
+    <option value="subtract">-</option>
+    <option value="multiply">×</option>
+    <option value="divide">÷</option>
+  </select>
   <input type="number" id="num2" placeholder="Second number" />
-  <button type="button" id="btnSum">Sum</button>
+  <button type="button" id="btnCalc">Calculate</button>
   <p>Result: <strong id="result">—</strong></p>
 
-  <!-- Link to the compiled JS (compile sum.ts with: tsc sum.ts) -->
+  <!-- Link to the compiled JS (compile with: tsc, or npm run build) -->
   <script src="sum.js"></script>
+  <script src="subtract.js"></script>
+  <script src="multiply.js"></script>
+  <script src="divide.js"></script>
   <script>
-    document.getElementById('btnSum').addEventListener('click', function () {
+    document.getElementById('btnCalc').addEventListener('click', function () {
       var a = Number(document.getElementById('num1').value) || 0;
       var b = Number(document.getElementById('num2').value) || 0;
-      document.getElementById('result').textContent = sum(a, b);
+      var op = document.getElementById('operation').value;
+      var operations = { sum: sum, subtract: subtract, multiply: multiply, divide: divide };
+      try {
+        document.getElementById('result').textContent = operations[op](a, b);
+      } catch (err) {
+        document.getElementById('result').textContent = 'Error: ' + err.message;
+      }
     });
   </script>
 </body>

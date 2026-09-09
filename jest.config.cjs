@@ -3,6 +3,6 @@ module.exports = {
   preset: "ts-jest",
   testMatch: ["**/*.test.ts"],
   moduleFileExtensions: ["ts", "js"],
-  collectCoverageFrom: ["sum.ts"],
+  collectCoverageFrom: ["*.ts", "!*.test.ts"],
   coveragePathIgnorePatterns: ["/node_modules/", "\\.test\\.ts$"],
 };

@@ -15,16 +15,35 @@ beforeAll(() => {
 });
 
 describe("sum", () => {
-  it("adds two positive numbers", () => {
-    expect(window.sum(2, 3)).toBe(5);
+  describe("with positive integers", () => {
+    it("adds two positive numbers", () => {
+      expect(window.sum(2, 3)).toBe(5);
+    });
+
+    it("adds larger positive numbers", () => {
+      expect(window.sum(100, 250)).toBe(350);
+    });
   });
 
-  it("adds negative numbers and positive numbers", () => {
-    expect(window.sum(-1, 1)).toBe(0);
+  describe("with zero", () => {
+    it("returns 0 when both are 0", () => {
+      expect(window.sum(0, 0)).toBe(0);
+    });
+
+    it("returns the other operand when adding 0", () => {
+      expect(window.sum(7, 0)).toBe(7);
+      expect(window.sum(0, 7)).toBe(7);
+    });
   });
 
-  it("returns 0 when both are 0", () => {
-    expect(window.sum(0, 0)).toBe(0);
+  describe("with negative numbers", () => {
+    it("adds a negative and a positive number", () => {
+      expect(window.sum(-1, 1)).toBe(0);
+    });
+
+    it("adds two negative numbers", () => {
+      expect(window.sum(-2, -3)).toBe(-5);
+    });
   });
 });
 
